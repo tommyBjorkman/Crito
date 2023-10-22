@@ -1,7 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.PageWithShowcase>
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.PageWithBreadcrumb>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = "_Layout.cshtml";
-	ViewData["Title"] = @Model.Value("title");
+	ViewData["Title"] = "";
 }

@@ -486,3 +486,9 @@ header .container .nav-menu .main-menu nav a:hover::after, header .container .na
 }
 .why-us .container .why-us-grid .why-us-section .why-us-text .us-content {
   flex: 1;
+}
+.wrapper {
+    display: flex;
+    height: 100dvh;
+    flex-direction: column;
+}

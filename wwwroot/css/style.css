@@ -492,3 +492,6 @@ header .container .nav-menu .main-menu nav a:hover::after, header .container .na
     height: 100dvh;
     flex-direction: column;
 }
+main {
+    flex: 1;
+}

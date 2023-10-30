@@ -495,3 +495,7 @@ header .container .nav-menu .main-menu nav a:hover::after, header .container .na
 main {
     flex: 1;
 }
+.footer-section {
+    display: flex;
+    justify-content: space-between;
+}

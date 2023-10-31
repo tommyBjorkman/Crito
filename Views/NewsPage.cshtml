@@ -4,17 +4,21 @@
 @using Umbraco.Cms.Core.Models.PublishedContent;
 @{
 	Layout = "LayoutWithBreadcrumb.cshtml";
-}
 
+var itemsPerPage = 6;
+var pageNumber = 1;
 
-@{
+if (!int.TryParse(Context.Request.Query["page"], out pageNumber))
+    pageNumber = 1;
+
 	var selection = Umbraco?.Content(Guid.Parse("320d5f8c-b159-428f-bfa8-9fc14762c6a2"))?
     .ChildrenOfType("newsItemPage")?
     .Where(x => x.IsVisible())
-    .OrderByDescending(x => x.CreateDate);
+    .OrderByDescending(x => x.CreateDate).ToList();
+    
+    var totalItems = selection?.Count ?? 0;
+    var pagedItems = selection?.Skip((pageNumber - 1) * itemsPerPage).Take(itemsPerPage);
 }
-@if(selection != null)
-{
 	@foreach (var item in selection)
 	{
 	    var url = item.Url();
@@ -35,4 +39,3 @@
 	        <p>@preamble</p>
 	    </a>
 	}
-}

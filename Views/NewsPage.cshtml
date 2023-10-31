@@ -1,6 +1,38 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.NewsPage>
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Models.PublishedContent;
 @{
 	Layout = "LayoutWithBreadcrumb.cshtml";
+}
+
+
+@{
+	var selection = Umbraco?.Content(Guid.Parse("320d5f8c-b159-428f-bfa8-9fc14762c6a2"))?
+    .ChildrenOfType("newsItemPage")?
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate);
+}
+@if(selection != null)
+{
+	@foreach (var item in selection)
+	{
+	    var url = item.Url();
+	    var date = item.CreateDate;
+	    var image = item.Value<IPublishedContent>("newsImage");
+	    var category = item.Value("newsCategory");
+	    var title = item.Name();
+	    var preamble = item.Value("newsPreamble");
+	    
+	    <a href="@url">
+	        <div>
+	            <div>@date.ToString("dd")</div>
+	            <div>@date.ToString("MMM")</div>
+	        </div>
+	        <img src="@image?.Url()" alt="">
+	        <p>@category</p>
+	        <h5>@title</h5>
+	        <p>@preamble</p>
+	    </a>
+	}
 }

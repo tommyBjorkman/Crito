@@ -39,14 +39,15 @@
 <section>
     <div class="container">
         <h2>Leave us a mesage for any information.</h2>
-        <form asp-controller="Contacts" asp-action="Index" method="post" novalidate>
+        @using (Html.BeginUmbracoForm("Index", "Contacts", FormMethod.Post))
+        {
             <input asp-for="@contactForm.Name" type="text" placeholder="Name">
             <input asp-for="@contactForm.Email" type="email" placeholder="Email">
             <textarea asp-for="@contactForm.Message" placeholder="Your Message"></textarea>
             <div class="d-grid">
-                <button type="submit" class="btn-theme">Send Message <i class="fa-solid fa-arrow-up-right></i></button>
+                <button type="submit" class="btn-theme">Send Message <i class="fa-solid fa-arrow-up-right"></i></button>
             </div>
-        </form>
+        }
     </div>
 </section>
 

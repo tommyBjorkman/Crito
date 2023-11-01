@@ -1,6 +1,7 @@
 ﻿using MailKit.Security;
 using MimeKit;
 using MimeKit.Text;
+using System.Diagnostics;
 
 namespace Crito.Services;
 
@@ -15,7 +16,7 @@ public class MailService : IDisposable
 
     public MailService(string from, string smtp, int port, string username, string password)
     {
-        _form = from;
+        _from = from;
         _smtp = smtp;
         _port = port;
         _username = username;
@@ -38,7 +39,10 @@ public class MailService : IDisposable
 
             var result = await _client.SendAsync(email);
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+        }
     }
     public void Dispose()
     {
